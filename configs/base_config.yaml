@@ -1,0 +1,64 @@
+# Base configuration for CSR++ training
+# Override per-dataset settings in tbx11k_config.yaml / vindrcxr_config.yaml
+
+# ── Model ────────────────────────────────────────────────────────────────────
+model:
+  backbone: "resnet50"
+  pretrained_backbone: true
+  num_prototypes: 100          # M — prototypes per concept
+  proto_dim: 256               # D — prototype embedding dimension
+
+# ── Improvements (toggle each independently for ablation) ────────────────────
+improvements:
+  use_gnn: true                # [A] GNN task head
+  use_uncertainty: true        # [B] Uncertainty maps + safety check
+  use_vlm: true                # [C] Medical VLM alignment
+
+# ── GNN (Improvement A) ───────────────────────────────────────────────────────
+gnn:
+  hidden_dim: 64
+  num_heads: 4
+  dropout: 0.1
+  graph_threshold: 0.1         # τ — min conditional prob to add an edge
+
+# ── VLM Alignment (Improvement C) ────────────────────────────────────────────
+vlm:
+  model_name: "microsoft/BiomedVLP-BioViL-T"
+  text_dim: 768
+  lambda_align: 0.1            # weight for alignment loss
+
+# ── Prototype learning (Stage 3) ──────────────────────────────────────────────
+prototype:
+  lambda_scale: 10.0           # λ — contrastive scaling factor
+  gamma_scale: 5.0             # γ — prototype assignment sharpness
+  margin: 0.1                  # δ — inter-concept margin
+
+# ── Training ──────────────────────────────────────────────────────────────────
+training:
+  # Stage 1
+  stage1_epochs: 30
+  stage1_lr: 1.0e-4
+  stage1_weight_decay: 1.0e-4
+
+  # Stage 3
+  stage3_epochs: 20
+  stage3_lr: 1.0e-4
+
+  # Stage 4
+  stage4_epochs: 20
+  stage4_lr: 1.0e-3
+  label_smoothing: 0.05
+
+  batch_size: 128             # matches the paper (Appendix B); A100 80GB fits 128 @ 224x224
+  num_workers: 4
+  seed: 42
+
+# ── Interaction ───────────────────────────────────────────────────────────────
+interaction:
+  alpha: 0.5                   # weight for unspecified regions in importance map
+  uncertainty_threshold: 0.05  # min score gap to trigger safety warning
+
+# ── Evaluation ────────────────────────────────────────────────────────────────
+evaluation:
+  metrics: ["macro_f1", "pointing_game", "ece"]
+  pg_concepts: null            # null = evaluate all concepts with GT bboxes

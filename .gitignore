@@ -1,0 +1,66 @@
+# Data and checkpoints (not redistributed; see README)
+/data/
+data/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+
+# Logs
+*.log
+logs/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# HuggingFace cache
+hf_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large files
+*.zip
+*.tar.gz
+*.pdf
+*.webp
+
+# ── Not for the public repo (kept locally, excluded from publishing) ──────────
+# Paper source (not part of the code release)
+main.tex
+
+# Internal planning / review docs
+documentation.md
+progress.md
+Changelog.md
+Action_Items.md
+Review_Report.md
+README.txt
+
+# Figure scratch dirs and generated/duplicate figures (regenerate via scripts/)
+figures/
+grape_figures/
+
+# Machine-specific helper
+scripts/monitor.sh

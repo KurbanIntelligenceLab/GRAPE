@@ -1,0 +1,15 @@
+# GRAPE — Python dependencies
+# Tested with Python 3.10 and CUDA 12.1 on an NVIDIA A100 80GB.
+# Versions are pinned to the stack reported in the paper (PyTorch 2.4.1+cu121, BF16 AMP).
+# For a CPU-only or different-CUDA install, adjust the torch/torchvision build accordingly
+# (see https://pytorch.org/get-started/previous-versions/).
+
+torch==2.4.1
+torchvision==0.19.1
+transformers>=4.40,<5.0       # frozen BioViL-T text encoder (microsoft/BiomedVLP-BioViL-T)
+scikit-learn>=1.3             # macro-F1 and metric utilities
+numpy>=1.24,<2.0
+pyyaml>=6.0                   # config parsing
+pillow>=9.5                   # image loading
+tqdm>=4.65                    # progress bars
+matplotlib>=3.7               # figure generation (scripts/)

@@ -1,0 +1,54 @@
+# TBX11K training config for CSR++
+# 3 TB finding types as concepts, 3-class classification (healthy/sick-non-TB/active-TB)
+# This is the paper's primary benchmark — GNN advantage is clearest on multi-class tasks.
+
+model:
+  backbone: "resnet50"
+  pretrained_backbone: true
+  num_prototypes: 100
+  proto_dim: 256
+
+improvements:
+  use_gnn: true
+  use_uncertainty: true
+  use_vlm: true
+
+gnn:
+  hidden_dim: 64
+  num_heads: 4
+  dropout: 0.1
+  graph_threshold: 0.1      # higher threshold — TB concepts are sparse/correlated
+
+vlm:
+  model_name: "microsoft/BiomedVLP-BioViL-T"
+  text_dim: 768
+  lambda_align: 0.1
+
+prototype:
+  lambda_scale: 10.0
+  gamma_scale: 5.0
+  margin: 0.1
+
+training:
+  stage1_epochs: 30
+  stage1_lr: 1.0e-4
+  stage1_weight_decay: 1.0e-4
+
+  stage3_epochs: 20
+  stage3_lr: 1.0e-4
+
+  stage4_epochs: 20
+  stage4_lr: 1.0e-3
+  label_smoothing: 0.05
+
+  batch_size: 128
+  num_workers: 8
+  seed: 42
+
+interaction:
+  alpha: 0.5
+  uncertainty_threshold: 0.05
+
+evaluation:
+  metrics: ["macro_f1", "pointing_game", "ece"]
+  pg_concepts: null

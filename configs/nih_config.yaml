@@ -1,0 +1,55 @@
+# NIH ChestX-ray14 training config for CSR++
+# 14 findings as concepts, binary classification (No Finding vs Any Finding)
+
+model:
+  backbone: "resnet50"
+  pretrained_backbone: true
+  num_prototypes: 100
+  proto_dim: 256
+
+improvements:
+  use_gnn: true
+  use_uncertainty: true
+  use_vlm: true
+
+gnn:
+  hidden_dim: 64
+  num_heads: 4
+  dropout: 0.1
+  graph_threshold: 0.1      # τ — matches the paper (Appendix B); used for all experiments
+
+vlm:
+  model_name: "microsoft/BiomedVLP-BioViL-T"
+  text_dim: 768
+  lambda_align: 0.1
+
+prototype:
+  lambda_scale: 10.0
+  gamma_scale: 5.0
+  margin: 0.1
+
+training:
+  # Per-dataset learning rates follow the paper (Appendix B, Table 8): NIH uses
+  # 5e-5 for Stages 1/3 and 5e-4 for Stage 4 (vs 1e-4 / 1e-3 for TBX11K).
+  stage1_epochs: 30
+  stage1_lr: 5.0e-5
+  stage1_weight_decay: 1.0e-4
+
+  stage3_epochs: 20
+  stage3_lr: 5.0e-5
+
+  stage4_epochs: 20
+  stage4_lr: 5.0e-4
+  label_smoothing: 0.05
+
+  batch_size: 128            # A100 80GB can handle 128 at 224x224
+  num_workers: 8
+  seed: 42
+
+interaction:
+  alpha: 0.5
+  uncertainty_threshold: 0.05
+
+evaluation:
+  metrics: ["macro_f1", "pointing_game", "ece"]
+  pg_concepts: null
