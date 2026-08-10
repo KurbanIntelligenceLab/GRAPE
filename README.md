@@ -1,5 +1,7 @@
 # GRAPE: Graph-Augmented Prototype Explanations for Interactive Medical Image Diagnosis
 
+[![arXiv](https://img.shields.io/badge/arXiv-2606.30901-b31b1b.svg)](https://arxiv.org/abs/2606.30901)
+
 Reference implementation for the paper **"GRAPE: Graph-Augmented Prototype Explanations
 for Interactive Medical Image Diagnosis"** (Khanbayov & Kurban).
 
@@ -166,11 +168,19 @@ train.py       entry point
 
 ## Citation
 
+## Citation
+
+If you use this code, please cite:
+
 ```bibtex
-@article{khanbayov2026grape,
-  title   = {GRAPE: Graph-Augmented Prototype Explanations for Interactive Medical Image Diagnosis},
-  author  = {Khanbayov, Rasul and Kurban, Hasan},
-  year    = {2026}
+@misc{khanbayov2026grapegraphaugmentedprototypeexplanations,
+      title={GRAPE: Graph-Augmented Prototype Explanations for Interactive Medical Image Diagnosis}, 
+      author={Rasul Khanbayov and Erchin Serpedin and Hasan Kurban},
+      year={2026},
+      eprint={2606.30901},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2606.30901}, 
 }
 ```
 
