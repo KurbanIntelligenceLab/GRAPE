@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="GRAPE: Graph-Augmented Prototype Explanations for Interactive Medical Image Diagnosis">
+  <meta name="keywords" content="GRAPE, prototype learning, concept bottleneck, medical imaging, graph attention, interpretability, chest X-ray">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GRAPE</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <style>
+    body {
+      font-family: 'Noto Sans', sans-serif;
+    }
+
+    .publication-title {
+      font-family: 'Google Sans', sans-serif;
+    }
+
+    .publication-authors {
+      font-family: 'Google Sans', sans-serif;
+    }
+
+    .publication-authors a {
+      color: hsl(204, 86%, 53%);
+    }
+
+    .publication-authors a:hover {
+      text-decoration: underline;
+    }
+
+    .publication-authors sup {
+      font-weight: 700;
+    }
+
+    .publication-hero .hero-body {
+      padding-bottom: 0;
+    }
+
+    .teaser .hero-body {
+      padding-top: 1rem;
+    }
+
+    .huggingface-logo {
+      width: 1.25rem;
+      height: 1.25rem;
+      object-fit: contain;
+    }
+
+    .arxiv-logo {
+      width: 1.15rem;
+      height: 1.3rem;
+      object-fit: contain;
+    }
+
+    .footer {
+      background-color: #ffffff;
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .teaser-figure {
+      max-width: 900px;
+      margin: 0 auto;
+      display: block;
+    }
+
+    /* ── figure gallery ── */
+    .figure-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .figure-cell {
+      text-align: center;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fafafa;
+    }
+
+    .figure-cell img {
+      width: 100%;
+      display: block;
+      background: #fff;
+    }
+
+    .figure-cell .figure-caption {
+      font-size: 13px;
+      font-weight: 600;
+      color: #555;
+      padding: 10px 12px;
+      background: #fff;
+      letter-spacing: 0.01em;
+      text-align: left;
+    }
+
+    @media (max-width: 768px) {
+      .figure-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── module stats ── */
+    .stat-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 2rem;
+    }
+
+    .stat-box {
+      text-align: center;
+      border: 2px solid #dbdbdb;
+      border-radius: 10px;
+      padding: 18px 28px;
+      min-width: 140px;
+    }
+
+    .stat-box .stat-num {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: #3273dc;
+      line-height: 1;
+    }
+
+    .stat-box .stat-label {
+      font-size: 13px;
+      color: #777;
+      margin-top: 4px;
+    }
+
+    /* ── contribution cards ── */
+    .contrib-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 1.5rem;
+    }
+
+    .contrib-card {
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 20px;
+      background: #fff;
+    }
+
+    .contrib-card h4 {
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 6px;
+      color: #222;
+    }
+
+    .contrib-card p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .contrib-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── bibtex ── */
+    #BibTeX pre {
+      background: #f5f5f5;
+      border-radius: 8px;
+      padding: 1.5rem;
+      font-size: 13px;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .copy-bib-btn {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: #dbdbdb;
+      border: none;
+      border-radius: 6px;
+      font-size: 12px;
+      padding: 4px 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .copy-bib-btn:hover {
+      background: #3273dc;
+      color: #fff;
+    }
+
+    /* ── results table ── */
+    .results-table {
+      font-size: 14.5px;
+    }
+
+    .results-table td:first-child,
+    .results-table th:first-child {
+      white-space: nowrap;
+    }
+
+    .note-text {
+      font-size: 13px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<section class="hero publication-hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+
+          <h1 class="title is-1 publication-title">
+            GRAPE: Graph-Augmented Prototype Explanations for Interactive Medical Image Diagnosis
+          </h1>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/rasulkhanbayov/" target="_blank" rel="noopener">Rasul Khanbayov</a>,&nbsp;
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=THi_ypMAAAAJ&amp;hl=en&amp;authuser=3&amp;oi=ao" target="_blank" rel="noopener">Erchin Serpedin</a>,&nbsp;
+            </span>
+            <span class="author-block">
+              <a href="https://www.hasankurban.com/" target="_blank" rel="noopener">Hasan Kurban</a>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors" style="margin-top: 0.75rem;">
+            <span class="author-block" style="color: #c0392b; font-weight: 600;">Accepted to NeurIPS 2026 🎉</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════ TEASER ══════════════════════════ -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <p style="font-size: 20px; color: black; text-align: center;">
+        Prototype-based medical image classifiers treat clinical findings as independent, silently
+        amplify unsafe physician feedback, and require full retraining to add a new finding.
+        <b>GRAPE</b> resolves all three limitations in one architecture: a
+        <b>graph attention task head</b> that models anatomical concept co-occurrence, a
+        <b>concept-mismatch safety check</b> that catches erroneous clinician corrections before
+        they are applied, and <b>open-vocabulary prototype anchoring</b> that adds a new finding
+        from a single labeled image, with only <b>+1ms</b> added latency at interactive batch size.
+      </p>
+
+      <img class="teaser-figure" src="site_assets/pg_dots.png" alt="Pointing Game localization comparison across methods" style="margin-top: 2rem; border-radius: 10px; border: 1px solid #e8e8e8;">
+      <p class="note-text has-text-centered" style="margin-top: 0.75rem;">
+        Pointing Game on TBX11K chest X-rays (Active TB concept). Each marker shows the
+        max-activation point of a method; <b>GRAPE</b> (orange circle) consistently localizes the
+        lesion inside the ground-truth bounding box (cyan) where CSR, CBM, and PIP-Net scatter to
+        irrelevant regions.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════ CONTRIBUTIONS ══════════════════════════ -->
+<section class="section" style="background: #fafafa; padding-top: 3rem; padding-bottom: 3rem;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Three Modules, One Architecture</h2>
+      </div>
+    </div>
+    <div class="contrib-cards">
+      <div class="contrib-card">
+        <h4>Module A — Graph Attention Task Head</h4>
+        <p>Builds a data-driven concept co-occurrence graph from training labels and refines
+        prototype similarity scores via graph attention before classification, boosting macro-F1
+        by <b>+13.8&nbsp;pp</b> over the prototype baseline on TBX11K.</p>
+      </div>
+      <div class="contrib-card">
+        <h4>Module B — Concept-Mismatch Safety Check</h4>
+        <p>The first such mechanism in prototype-based medical classifiers: warns when the
+        model's dominant finding inside a doctor-drawn region conflicts with the claimed label,
+        catching <b>85%</b> of erroneous annotations versus 51% for MC-Dropout, at no extra
+        inference cost.</p>
+      </div>
+      <div class="contrib-card">
+        <h4>Module C — Open-Vocabulary Prototype Anchoring</h4>
+        <p>Aligns visual prototypes to frozen BioViL-T text embeddings, letting a new clinical
+        finding be added from a single labeled image without modifying any other component of the
+        model.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════ RESULTS ══════════════════════════ -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+      </div>
+    </div>
+
+    <div class="stat-boxes">
+      <div class="stat-box">
+        <div class="stat-num">+13.8&nbsp;pp</div>
+        <div class="stat-label">Macro F1 vs. CSR (TBX11K)</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">2.6×</div>
+        <div class="stat-label">Better Lesion Localization</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">85%</div>
+        <div class="stat-label">Safety Check Catch Rate</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">+1&nbsp;ms</div>
+        <div class="stat-label">Added Latency</div>
+      </div>
+    </div>
+
+    <div class="content">
+      <table class="table is-fullwidth is-hoverable results-table">
+        <thead>
+          <tr>
+            <th>Dataset</th>
+            <th>Method</th>
+            <th>Macro F1 ↑</th>
+            <th>Pointing Game ↑</th>
+            <th>Δ F1</th>
+            <th>p-value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="2">TBX11K</td>
+            <td>CSR (baseline)</td>
+            <td>0.728 ± 0.050</td>
+            <td>0.094 ± 0.033</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><b>GRAPE</b> (GNN + Unc.)</td>
+            <td><b>0.866 ± 0.042</b></td>
+            <td>0.080 ± 0.032</td>
+            <td><b>+13.8 pp</b></td>
+            <td>0.0013</td>
+          </tr>
+          <tr>
+            <td rowspan="2">NIH ChestX-ray14</td>
+            <td>CSR (baseline)</td>
+            <td>0.6048 ± 0.0170</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><b>GRAPE</b> (full)</td>
+            <td>0.6031 ± 0.0174</td>
+            <td>—</td>
+            <td>−0.3 pp</td>
+            <td>0.894 (n.s.)</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note-text">
+        Multi-seed comparison (5 seeds {0,1,2,3,42}) under the same interpretability-constrained
+        training regime (frozen backbone, concept supervision, staged curriculum). On TBX11K, the
+        graph attention head yields a large and significant gain; on the 14-concept NIH task, GRAPE
+        and CSR are statistically comparable under the rigorous patient-level split protocol.
+      </p>
+    </div>
+
+    <div class="figure-grid" style="grid-template-columns: 1fr;">
+      <div class="figure-cell">
+        <img src="site_assets/simmaps_comparison.png" alt="Similarity map comparison" loading="lazy">
+        <div class="figure-caption">Prototype similarity maps across CSR, CBM, PIP-Net, and GRAPE on representative Active TB examples. Percentage badges report the fraction of total heatmap energy inside the ground-truth box.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════ BIBTEX ══════════════════════════ -->
+<section class="section" id="BibTeX" style="padding-top: 0;">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Cite</h2>
+    <div style="position: relative;">
+      <button class="copy-bib-btn" onclick="copyBib()">Copy</button>
+      <pre><code id="bibtex-code">@inproceedings{khanbayov2026grape,
+  title={GRAPE: Graph-Augmented Prototype Explanations for Interactive Medical Image Diagnosis},
+  author={Khanbayov, Rasul and Serpedin, Erchin and Kurban, Hasan},
+  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
+  year={2026}
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+<div class="footer">
+  <p style="font-size: 12px; color: #aaa; margin-top: 8px;">
+    GRAPE &nbsp;·&nbsp;
+    Page template inspired by <a href="https://glab-caltech.github.io/steer3d/" style="color:#aaa;">Steer3D</a>.
+  </p>
+</div>
+
+<script>
+  function copyBib() {
+    const text = document.getElementById('bibtex-code').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.copy-bib-btn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
