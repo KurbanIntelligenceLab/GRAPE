@@ -1,5 +1,5 @@
 # Base configuration for CSR++ training
-# Override per-dataset settings in tbx11k_config.yaml / vindrcxr_config.yaml
+# Override per-dataset settings in tbx11k_config.yaml / nih_config.yaml
 
 # ── Model ────────────────────────────────────────────────────────────────────
 model:

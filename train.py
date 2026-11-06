@@ -29,7 +29,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Train CSR++ model")
 
     # Dataset
-    # tbx11k and nih are the paper datasets; vindrcxr/isic are unused scaffolding.
+    # tbx11k and nih are the paper datasets; isic is unused scaffolding.
     parser.add_argument("--dataset", type=str, default="tbx11k",
                         choices=["tbx11k", "nih"])
     parser.add_argument("--data_dir", type=str, default="./data",

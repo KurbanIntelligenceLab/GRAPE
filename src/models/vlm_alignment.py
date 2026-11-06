@@ -41,19 +41,6 @@ CONCEPT_DESCRIPTIONS = {
             "tree-in-bud opacities, or miliary nodules on chest X-ray."
         ),
     },
-    "vindrcxr": {
-        "aortic_enlargement": (
-            "Widening of the aortic contour on chest X-ray, suggesting aortic aneurysm or dilation."
-        ),
-        "atelectasis": (
-            "Linear or plate-like opacities representing collapsed lung segments, often at the "
-            "lung bases or adjacent to pleural effusions."
-        ),
-        "calcification": (
-            "Focal areas of increased density within the lung or mediastinum, representing "
-            "calcium deposits from prior granulomatous infection."
-        ),
-    },
     "isic": {
         "pigment_network": (
             "A reticular pattern of pigmented lines forming a network structure over a skin lesion, "

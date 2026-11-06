@@ -246,6 +246,34 @@
             <span class="author-block" style="color: #c0392b; font-weight: 600;">Accepted to NeurIPS 2026 🎉</span>
           </div>
 
+          <div class="publication-links" style="margin-top: 1.25rem;">
+
+            <!-- arXiv -->
+            <span class="link-block">
+              <a href="https://arxiv.org/pdf/2606.30901"
+                 class="external-link button is-normal is-rounded is-dark"
+                 target="_blank" rel="noopener">
+                <span class="icon">
+                  <i class="ai ai-arxiv"></i>
+                </span>
+                <span>arXiv</span>
+              </a>
+            </span>
+
+            <!-- Code -->
+            <span class="link-block">
+              <a href="https://github.com/KurbanIntelligenceLab/GRAPE"
+                 class="external-link button is-normal is-rounded is-dark"
+                 target="_blank" rel="noopener">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+              </a>
+            </span>
+
+          </div>
+
         </div>
       </div>
     </div>
@@ -287,6 +315,15 @@
         <h2 class="title is-3">Three Modules, One Architecture</h2>
       </div>
     </div>
+    <img class="teaser-figure" src="site_assets/architecture.png" alt="GRAPE architecture diagram showing Modules A, B and C" style="border-radius: 10px; border: 1px solid #e8e8e8; background: #fff;">
+    <p class="note-text has-text-centered" style="margin-top: 0.75rem; margin-bottom: 1.5rem;">
+      An X-ray is encoded by ResNet-50 and an MLP projector into spatial features.
+      <b>Module A</b> matches them against a learned prototype atlas, and the score matrix feeds a
+      GAT-style head built over a co-occurrence graph. <b>Module B</b> compares mean concept
+      similarity inside a clinician's box against the claimed concept's, flagging a mismatch before
+      feedback is applied. <b>Module C</b> adds concepts from a text anchor via a frozen BioViL-T
+      encoder. Dashed arrows mark training-only or concept-addition-only paths.
+    </p>
     <div class="contrib-cards">
       <div class="contrib-card">
         <h4>Module A — Graph Attention Task Head</h4>
@@ -429,6 +466,8 @@
 <div class="footer">
   <p style="font-size: 12px; color: #aaa; margin-top: 8px;">
     GRAPE &nbsp;·&nbsp;
+    <a href="https://arxiv.org/pdf/2606.30901" style="color:#aaa;">Paper</a> &nbsp;·&nbsp;
+    <a href="https://github.com/KurbanIntelligenceLab/GRAPE" style="color:#aaa;">Code</a> &nbsp;·&nbsp;
     Page template inspired by <a href="https://glab-caltech.github.io/steer3d/" style="color:#aaa;">Steer3D</a>.
   </p>
 </div>

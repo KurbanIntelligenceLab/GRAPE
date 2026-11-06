@@ -5,7 +5,6 @@ and produce labels.csv in the format expected by CSRDataset.
 NIH ChestX-ray14:
   - 112,120 frontal chest X-ray images
   - 14 disease labels (multi-label)
-  - Used as a proxy for TBX11K/VinDr-CXR (same domain, same concept types)
   - Binary task: No Finding (0) vs Any Finding (1) — maps to CSR class_label
 
 We download up to MAX_SAMPLES images to keep training time reasonable on A100.
