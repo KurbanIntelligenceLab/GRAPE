@@ -1,0 +1,21 @@
+{
+  "dataset": "nih",
+  "seed": 1,
+  "num_concepts": 14,
+  "num_classes": 2,
+  "Linear (CSR)": {
+    "f1": 0.5608000512103584,
+    "pg": 0.0,
+    "params": 2802
+  },
+  "MLP (matched)": {
+    "f1": 0.5517924711902908,
+    "pg": 0.0,
+    "params": 187970
+  },
+  "GAT (GRAPE)": {
+    "f1": 0.6039856799749194,
+    "pg": 0.0,
+    "params": 46210
+  }
+}

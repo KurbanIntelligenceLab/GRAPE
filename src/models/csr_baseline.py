@@ -16,6 +16,7 @@ from .concept_model import ConceptModel
 from .projector import FeatureProjector
 from .prototype_learner import PrototypeLearner
 from .gnn_task_head import GNNTaskHead
+from .graph_heads import MLGCNTaskHead, ADDGCNTaskHead
 from .uncertainty_head import UncertaintyHead
 from .vlm_alignment import VLMAligner
 
@@ -44,6 +45,8 @@ class CSRModel(nn.Module):
         use_gnn: bool = True,          # [A]
         use_uncertainty: bool = True,  # [B]
         use_vlm: bool = True,          # [C]
+        # Task head type: "gat" (default GAT), "mlgcn", "addgcn"
+        task_head_type: str = "gat",
         # GNN config
         gnn_hidden_dim: int = 64,
         gnn_num_heads: int = 4,
@@ -61,6 +64,7 @@ class CSRModel(nn.Module):
         self.use_gnn = use_gnn
         self.use_uncertainty = use_uncertainty
         self.use_vlm = use_vlm
+        self.task_head_type = task_head_type
 
         # ── Stage 1: Concept model ──────────────────────────────────────────
         self.concept_model = ConceptModel(
@@ -86,13 +90,28 @@ class CSRModel(nn.Module):
 
         # ── Stage 4: Task head ──────────────────────────────────────────────
         if use_gnn:
-            self.task_head = GNNTaskHead(
-                num_concepts=num_concepts,
-                num_prototypes=num_prototypes,
-                num_classes=num_classes,
-                hidden_dim=gnn_hidden_dim,
-                num_heads=gnn_num_heads,
-            )
+            if task_head_type == "mlgcn":
+                self.task_head = MLGCNTaskHead(
+                    num_concepts=num_concepts,
+                    num_prototypes=num_prototypes,
+                    num_classes=num_classes,
+                    hidden_dim=gnn_hidden_dim,
+                )
+            elif task_head_type == "addgcn":
+                self.task_head = ADDGCNTaskHead(
+                    num_concepts=num_concepts,
+                    num_prototypes=num_prototypes,
+                    num_classes=num_classes,
+                    hidden_dim=gnn_hidden_dim,
+                )
+            else:  # "gat" — default
+                self.task_head = GNNTaskHead(
+                    num_concepts=num_concepts,
+                    num_prototypes=num_prototypes,
+                    num_classes=num_classes,
+                    hidden_dim=gnn_hidden_dim,
+                    num_heads=gnn_num_heads,
+                )
         else:
             # Original linear task head
             self.task_head = nn.Linear(num_concepts * num_prototypes, num_classes)

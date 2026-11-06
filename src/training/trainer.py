@@ -56,9 +56,14 @@ class CSRTrainer:
         self.model = model.to(device)
         self.config = config
         self.device = device
-        # BF16 AMP: A100 has native BF16 support (better than FP16 for training stability)
+        # BF16 AMP on GPUs with native tensor-core support (A100+); FP16 on older
+        # architectures (e.g. Pascal/P100) where BF16 falls back to slow emulation.
         self.use_amp = use_amp and device.type == "cuda"
-        self.amp_dtype = torch.bfloat16 if self.use_amp else torch.float32
+        if self.use_amp:
+            major, _ = torch.cuda.get_device_capability(device)
+            self.amp_dtype = torch.bfloat16 if major >= 8 else torch.float16
+        else:
+            self.amp_dtype = torch.float32
         self.scaler = GradScaler(enabled=(self.use_amp and self.amp_dtype == torch.float16))
 
         if compile_model and hasattr(torch, "compile"):
@@ -227,9 +232,14 @@ class CSRTrainer:
 
                 loss = self.proto_loss(con_loss, align_loss)
 
-            self.scaler.scale(loss).backward()
-            self.scaler.step(optimizer)
-            self.scaler.update()
+            # Skip backward when loss has no grad_fn (e.g. all-No-Finding batch
+            # in NIH where no concept masks fired and loss is a detached zero).
+            if loss.grad_fn is not None:
+                self.scaler.scale(loss).backward()
+                self.scaler.step(optimizer)
+                self.scaler.update()
+            else:
+                self.scaler.update()   # keep scaler state consistent
             total_loss += loss.item()
 
         return total_loss / len(loader)
@@ -425,3 +435,108 @@ class CSRTrainer:
         self.model.load_state_dict(ckpt["model_state"])
         self.history = ckpt.get("history", self.history)
         print(f"  Loaded checkpoint: {path}")
+
+    # ── End-to-End Training (N4 ablation) ────────────────────────────────────
+
+    def run_end_to_end(self, train_loader: DataLoader, val_loader: DataLoader = None):
+        """
+        N4 ablation: train all parameters jointly with combined loss,
+        bypassing the 4-stage curriculum.
+
+        Loss = L_BCE (concept supervision) + L_proto (prototype contrastive)
+                + L_cls (task head classification)
+        Total epochs = stage1 + stage3 + stage4 epochs (fair budget).
+        """
+        print("\n" + "=" * 60)
+        print("END-TO-END TRAINING (N4 ablation — no staged curriculum)")
+        print("=" * 60)
+
+        cfg = self.config["training"]
+        total_epochs = (cfg["stage1_epochs"] + cfg["stage3_epochs"]
+                        + cfg.get("stage4_epochs", 20))
+        print(f"  Total epochs: {total_epochs} (stage budget: "
+              f"{cfg['stage1_epochs']} + {cfg['stage3_epochs']} + "
+              f"{cfg.get('stage4_epochs', 20)})")
+
+        # All parameters trainable
+        for p in self.model.parameters():
+            p.requires_grad = True
+
+        lr = cfg.get("stage1_lr", 1e-4)
+        optimizer = AdamW(self.model.parameters(), lr=lr,
+                          weight_decay=cfg.get("stage1_weight_decay", 1e-4))
+        scheduler = CosineAnnealingLR(optimizer, T_max=total_epochs)
+
+        # Build graph once (needed for GNN forward pass)
+        all_labels_list = []
+        for batch in train_loader:
+            all_labels_list.append(batch["concept_labels"])
+        all_labels = torch.cat(all_labels_list).to(self.device)
+        ei, ew = build_cooccurrence_graph(
+            all_labels,
+            threshold=self.config.get("graph", {}).get("threshold", 0.1)
+        )
+        ew_norm = normalize_edge_weights(ei, ew,
+                                         self.model.num_concepts
+                                         if hasattr(self.model, "num_concepts")
+                                         else all_labels.shape[1])
+        self.model.set_concept_graph(ei, ew_norm)
+
+        best_f1 = -1.0
+        for epoch in range(total_epochs):
+            self.model.train()
+            epoch_loss = 0.0
+            n_batches = 0
+
+            for batch in train_loader:
+                images = batch["image"].to(self.device)
+                concept_labels = batch["concept_labels"].to(self.device)
+                class_labels = batch["class_label"].to(self.device)
+
+                optimizer.zero_grad()
+                with autocast(device_type=self.device.type,
+                               dtype=self.amp_dtype, enabled=self.use_amp):
+                    # BCE on concept predictions (Stage 1 loss)
+                    feat, feat_flat, concept_logits = self.model.concept_model(images)
+                    l_bce = self.concept_bce(concept_logits, concept_labels)
+
+                    # Prototype contrastive loss (Stage 3 loss)
+                    v_raw = self.model.concept_model.generate_concept_vectors(images)
+                    B, K, C = v_raw.shape
+                    v_proj = self.model.projector(v_raw.view(B * K, C)).view(B, K, -1)
+                    con_loss = self.model.prototype_learner.contrastive_loss(v_proj, concept_labels)
+                    align_loss = None
+                    if self.model.use_vlm and hasattr(self.model, "vlm_aligner"):
+                        align_loss = self.model.vlm_aligner.compute_alignment_loss(
+                            self.model.prototype_learner.normalized_prototypes)
+                    l_proto = self.proto_loss(con_loss, align_loss)
+
+                    # Classification loss (Stage 4 loss)
+                    out = self.model(images)
+                    logits = out["logits"] if isinstance(out, dict) else out
+                    l_cls = self.cls_loss(logits, class_labels)
+
+                    loss = l_bce + l_proto + l_cls
+
+                self.scaler.scale(loss).backward()
+                torch.nn.utils.clip_grad_norm_(self.model.parameters(), 1.0)
+                self.scaler.step(optimizer)
+                self.scaler.update()
+                epoch_loss += loss.item()
+                n_batches += 1
+
+            scheduler.step()
+            avg_loss = epoch_loss / max(n_batches, 1)
+
+            val_info = ""
+            if val_loader is not None and (epoch + 1) % 5 == 0:
+                val_f1 = self._eval_task_head(val_loader)
+                val_info = f"  val_f1={val_f1:.4f}"
+                if val_f1 > best_f1:
+                    best_f1 = val_f1
+                    self._save_checkpoint("e2e_best")
+
+            print(f"  Epoch {epoch+1:3d}/{total_epochs}  loss={avg_loss:.4f}{val_info}")
+
+        self._save_checkpoint("e2e_final")
+        print(f"End-to-end training complete. Best val F1: {best_f1:.4f}\n")

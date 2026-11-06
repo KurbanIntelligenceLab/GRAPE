@@ -1,0 +1,16 @@
+{
+  "dataset": "tbx11k",
+  "seed": 42,
+  "precision": "fp16",
+  "note": "final metrics of the full 4-stage training runs behind Table 31",
+  "resnet50_imagenet": {
+    "macro_f1": 0.9001,
+    "pointing_game": 0.0821,
+    "pg_pairs": 207
+  },
+  "xrv_densenet121": {
+    "macro_f1": 0.8255,
+    "pointing_game": 0.1401,
+    "pg_pairs": 207
+  }
+}

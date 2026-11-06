@@ -1,0 +1,323 @@
+{
+  "effusion_addition_all_concept_flip_rates": {
+    "0": {
+      "Atelectasis": {
+        "flip_rate_mean": 0.09036144578313253,
+        "flip_rate_std": 0.0,
+        "n_seeds": 1
+      },
+      "Cardiomegaly": {
+        "flip_rate_mean": 0.04065040650406504,
+        "flip_rate_std": 0.0,
+        "n_seeds": 1
+      },
+      "Consolidation": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Edema": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Emphysema": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Fibrosis": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Hernia": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Infiltration": {
+        "flip_rate_mean": 0.061946902654867256,
+        "flip_rate_std": 0.0,
+        "n_seeds": 1
+      },
+      "Mass": {
+        "flip_rate_mean": 0.05,
+        "flip_rate_std": 0.0,
+        "n_seeds": 1
+      },
+      "Nodule": {
+        "flip_rate_mean": 0.04054054054054054,
+        "flip_rate_std": 0.0,
+        "n_seeds": 1
+      },
+      "Pleural_Thickening": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Pneumonia": {
+        "flip_rate_mean": 0.07964601769911504,
+        "flip_rate_std": 0.0,
+        "n_seeds": 1
+      },
+      "Pneumothorax": {
+        "flip_rate_mean": 0.037037037037037035,
+        "flip_rate_std": 0.0,
+        "n_seeds": 1
+      }
+    },
+    "1": {
+      "Atelectasis": {
+        "flip_rate_mean": 0.36947791164658633,
+        "flip_rate_std": 0.014198931349127454,
+        "n_seeds": 3
+      },
+      "Cardiomegaly": {
+        "flip_rate_mean": 0.20596205962059622,
+        "flip_rate_std": 0.01916278539800942,
+        "n_seeds": 3
+      },
+      "Consolidation": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Edema": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Emphysema": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Fibrosis": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Hernia": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Infiltration": {
+        "flip_rate_mean": 0.30383480825958703,
+        "flip_rate_std": 0.037079071061877675,
+        "n_seeds": 3
+      },
+      "Mass": {
+        "flip_rate_mean": 0.325,
+        "flip_rate_std": 0.05400617248673217,
+        "n_seeds": 3
+      },
+      "Nodule": {
+        "flip_rate_mean": 0.4369369369369369,
+        "flip_rate_std": 0.031851656810204854,
+        "n_seeds": 3
+      },
+      "Pleural_Thickening": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Pneumonia": {
+        "flip_rate_mean": 0.3569321533923304,
+        "flip_rate_std": 0.025375590758237834,
+        "n_seeds": 3
+      },
+      "Pneumothorax": {
+        "flip_rate_mean": 0.448559670781893,
+        "flip_rate_std": 0.04655847118923769,
+        "n_seeds": 3
+      }
+    },
+    "5": {
+      "Atelectasis": {
+        "flip_rate_mean": 0.4076305220883534,
+        "flip_rate_std": 0.03005347298613606,
+        "n_seeds": 3
+      },
+      "Cardiomegaly": {
+        "flip_rate_mean": 0.1869918699186992,
+        "flip_rate_std": 0.017562982922514528,
+        "n_seeds": 3
+      },
+      "Consolidation": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Edema": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Emphysema": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Fibrosis": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Hernia": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Infiltration": {
+        "flip_rate_mean": 0.30678466076696165,
+        "flip_rate_std": 0.034147011512655534,
+        "n_seeds": 3
+      },
+      "Mass": {
+        "flip_rate_mean": 0.375,
+        "flip_rate_std": 0.027003086243366083,
+        "n_seeds": 3
+      },
+      "Nodule": {
+        "flip_rate_mean": 0.4594594594594595,
+        "flip_rate_std": 0.029192525668503885,
+        "n_seeds": 3
+      },
+      "Pleural_Thickening": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Pneumonia": {
+        "flip_rate_mean": 0.35693215339233036,
+        "flip_rate_std": 0.02920204996050639,
+        "n_seeds": 3
+      },
+      "Pneumothorax": {
+        "flip_rate_mean": 0.4567901234567901,
+        "flip_rate_std": 0.08729713347982071,
+        "n_seeds": 3
+      }
+    },
+    "20": {
+      "Atelectasis": {
+        "flip_rate_mean": 0.34136546184738953,
+        "flip_rate_std": 0.019878503888778466,
+        "n_seeds": 3
+      },
+      "Cardiomegaly": {
+        "flip_rate_mean": 0.20596205962059622,
+        "flip_rate_std": 0.0038325570796018914,
+        "n_seeds": 3
+      },
+      "Consolidation": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Edema": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Emphysema": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Fibrosis": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Hernia": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Infiltration": {
+        "flip_rate_mean": 0.2949852507374631,
+        "flip_rate_std": 0.0300827109946477,
+        "n_seeds": 3
+      },
+      "Mass": {
+        "flip_rate_mean": 0.2916666666666667,
+        "flip_rate_std": 0.04823265376162594,
+        "n_seeds": 3
+      },
+      "Nodule": {
+        "flip_rate_mean": 0.40090090090090086,
+        "flip_rate_std": 0.012740662724081938,
+        "n_seeds": 3
+      },
+      "Pleural_Thickening": {
+        "flip_rate_mean": null,
+        "flip_rate_std": null,
+        "n_seeds": 0
+      },
+      "Pneumonia": {
+        "flip_rate_mean": 0.3392330383480826,
+        "flip_rate_std": 0.015041355497323846,
+        "n_seeds": 3
+      },
+      "Pneumothorax": {
+        "flip_rate_mean": 0.3991769547325103,
+        "flip_rate_std": 0.02327923559461885,
+        "n_seeds": 3
+      }
+    }
+  },
+  "negative_control": {
+    "concept_added": "Hernia",
+    "concept_added_idx": 7,
+    "edge_weight_to_atelectasis": 0.004655493423342705,
+    "atelectasis_flip_rates": {
+      "0": {
+        "Atelectasis": {
+          "flip_rate_mean": 0.006024096385542169,
+          "flip_rate_std": 0.0,
+          "n_seeds": 1
+        }
+      },
+      "1": {
+        "Atelectasis": {
+          "flip_rate_mean": 0.38755020080321284,
+          "flip_rate_std": 0.01727374551614984,
+          "n_seeds": 3
+        }
+      },
+      "5": {
+        "Atelectasis": {
+          "flip_rate_mean": 0.4016064257028112,
+          "flip_rate_std": 0.03348058634645196,
+          "n_seeds": 3
+        }
+      },
+      "20": {
+        "Atelectasis": {
+          "flip_rate_mean": 0.3373493975903615,
+          "flip_rate_std": 0.01773445957093946,
+          "n_seeds": 3
+        }
+      }
+    }
+  },
+  "edge_weights_to_atelectasis": {
+    "Atelectasis": 0.0,
+    "Cardiomegaly": 0.028398510068655014,
+    "Consolidation": 0.1154562383890152,
+    "Edema": 0.019087523221969604,
+    "Effusion": 0.29702049493789673,
+    "Emphysema": 0.03724394738674164,
+    "Fibrosis": 0.01955307275056839,
+    "Hernia": 0.004655493423342705,
+    "Infiltration": 0.2918994426727295,
+    "Mass": 0.06890130043029785,
+    "Nodule": 0.049813780933618546,
+    "Pleural_Thickening": 0.04702048376202583,
+    "Pneumonia": 0.022346368059515953,
+    "Pneumothorax": 0.07774674147367477
+  }
+}

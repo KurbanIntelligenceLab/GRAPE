@@ -1,0 +1,77 @@
+{
+  "shifted_concepts": [
+    "Infiltration",
+    "Consolidation",
+    "Pneumonia",
+    "Effusion"
+  ],
+  "oversample_factor": 3.0,
+  "graph_tau": 0.05,
+  "original_graph_edges": 105,
+  "shifted_graph_edges": 115,
+  "edges_added_under_shift": [
+    [
+      "Mass",
+      "Edema"
+    ],
+    [
+      "Pleural_Thickening",
+      "Atelectasis"
+    ],
+    [
+      "Edema",
+      "Hernia"
+    ],
+    [
+      "Nodule",
+      "Cardiomegaly"
+    ],
+    [
+      "Consolidation",
+      "Pneumothorax"
+    ],
+    [
+      "Pleural_Thickening",
+      "Consolidation"
+    ],
+    [
+      "Cardiomegaly",
+      "Hernia"
+    ],
+    [
+      "Consolidation",
+      "Fibrosis"
+    ],
+    [
+      "Emphysema",
+      "Fibrosis"
+    ],
+    [
+      "Cardiomegaly",
+      "Fibrosis"
+    ],
+    [
+      "Consolidation",
+      "Emphysema"
+    ],
+    [
+      "Nodule",
+      "Pneumonia"
+    ]
+  ],
+  "edges_removed_under_shift": [
+    [
+      "Edema",
+      "Infiltration"
+    ],
+    [
+      "Mass",
+      "Hernia"
+    ]
+  ],
+  "f1_original_graph_original_data": 0.6002331259516174,
+  "f1_shifted_graph_shifted_data": 0.6320906122270707,
+  "f1_original_weights_shifted_graph": 0.6002331259516174,
+  "delta_retrained_on_shift": 0.03185748627545337,
+  "delta_graph_swap_no_retrain": 0.0
+}

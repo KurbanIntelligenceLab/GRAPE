@@ -1,0 +1,925 @@
+{
+  "dataset": "nih",
+  "sweep": {
+    "None": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.7466216216216216,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.9433481720693324,
+        "tp_rate_std": 0.006189770925686824,
+        "fp_rate_mean": 0.7482864476100911,
+        "fp_rate_std": 0.0031136659842167405
+      },
+      "0.25": {
+        "tp_rate_mean": 0.92383482581158,
+        "tp_rate_std": 0.01981462798767988,
+        "fp_rate_mean": 0.7448446966100357,
+        "fp_rate_std": 0.008742582947903612
+      },
+      "0.5": {
+        "tp_rate_mean": 0.9167688550051969,
+        "tp_rate_std": 0.007046847028480785,
+        "fp_rate_mean": 0.7419196524674141,
+        "fp_rate_std": 0.015723806155614146
+      },
+      "1.0": {
+        "tp_rate_mean": 0.9331081081081081,
+        "tp_rate_std": 0.006512086619279708,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "2.5e-06": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.0,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.0072597094595061775,
+        "tp_rate_std": 0.006047495474302543,
+        "fp_rate_mean": 0.0,
+        "fp_rate_std": 0.0
+      },
+      "0.25": {
+        "tp_rate_mean": 0.000970873786407767,
+        "tp_rate_std": 0.001941747572815534,
+        "fp_rate_mean": 0.0,
+        "fp_rate_std": 0.0
+      },
+      "0.5": {
+        "tp_rate_mean": 0.004039156389914382,
+        "tp_rate_std": 0.002658343927981633,
+        "fp_rate_mean": 0.0,
+        "fp_rate_std": 0.0
+      },
+      "1.0": {
+        "tp_rate_mean": 0.004054054054054054,
+        "tp_rate_std": 0.0013513513513513512,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "5e-06": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.0,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.021779128378518534,
+        "tp_rate_std": 0.018142486422907632,
+        "fp_rate_mean": 0.0,
+        "fp_rate_std": 0.0
+      },
+      "0.25": {
+        "tp_rate_mean": 0.011908440587880402,
+        "tp_rate_std": 0.007824326302520406,
+        "fp_rate_mean": 0.0,
+        "fp_rate_std": 0.0
+      },
+      "0.5": {
+        "tp_rate_mean": 0.01439966755188094,
+        "tp_rate_std": 0.004879009603313063,
+        "fp_rate_mean": 0.0,
+        "fp_rate_std": 0.0
+      },
+      "1.0": {
+        "tp_rate_mean": 0.01689189189189189,
+        "tp_rate_std": 0.002567962669142202,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "7.5e-06": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.0,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.030498148150169886,
+        "tp_rate_std": 0.019135448424290283,
+        "fp_rate_mean": 0.0,
+        "fp_rate_std": 0.0
+      },
+      "0.25": {
+        "tp_rate_mean": 0.02180402791723592,
+        "tp_rate_std": 0.007159795514222534,
+        "fp_rate_mean": 0.0,
+        "fp_rate_std": 0.0
+      },
+      "0.5": {
+        "tp_rate_mean": 0.025503115901290223,
+        "tp_rate_std": 0.004752948172046904,
+        "fp_rate_mean": 0.0,
+        "fp_rate_std": 0.0
+      },
+      "1.0": {
+        "tp_rate_mean": 0.03153153153153153,
+        "tp_rate_std": 0.007122246982361215,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "1e-05": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.0011261261261261261,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.032879100531122266,
+        "tp_rate_std": 0.022957755954637518,
+        "fp_rate_mean": 0.001010217785531699,
+        "fp_rate_std": 0.0005052548737814281
+      },
+      "0.25": {
+        "tp_rate_mean": 0.03625814748791429,
+        "tp_rate_std": 0.006760656471157018,
+        "fp_rate_mean": 0.0012040059271778418,
+        "fp_rate_std": 0.0006021192494534863
+      },
+      "0.5": {
+        "tp_rate_mean": 0.031814316377170124,
+        "tp_rate_std": 0.006888618927309219,
+        "fp_rate_mean": 0.0013831644508071569,
+        "fp_rate_std": 0.0011322749996511513
+      },
+      "1.0": {
+        "tp_rate_mean": 0.04009009009009008,
+        "tp_rate_std": 0.007557640421424556,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "1.25e-05": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.0022522522522522522,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.047384809247357294,
+        "tp_rate_std": 0.020007112619027257,
+        "fp_rate_mean": 0.0017559788556366974,
+        "fp_rate_std": 0.0006118088711393971
+      },
+      "0.25": {
+        "tp_rate_mean": 0.04832941869536959,
+        "tp_rate_std": 0.007581234339028766,
+        "fp_rate_mean": 0.002098851882394815,
+        "fp_rate_std": 0.0007427790498544513
+      },
+      "0.5": {
+        "tp_rate_mean": 0.038601761544044336,
+        "tp_rate_std": 0.006498326250143569,
+        "fp_rate_mean": 0.0018733605292385294,
+        "fp_rate_std": 0.0018138615795989673
+      },
+      "1.0": {
+        "tp_rate_mean": 0.05,
+        "tp_rate_std": 0.007072215526174588,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "1.5e-05": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.0045045045045045045,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.0576365841600112,
+        "tp_rate_std": 0.02038892789775283,
+        "fp_rate_mean": 0.00426601050993143,
+        "fp_rate_std": 0.0006101702474926362
+      },
+      "0.25": {
+        "tp_rate_mean": 0.060236048052231414,
+        "tp_rate_std": 0.01049337843348499,
+        "fp_rate_mean": 0.004506863736750499,
+        "fp_rate_std": 0.0016619690309385737
+      },
+      "0.5": {
+        "tp_rate_mean": 0.04950601388218383,
+        "tp_rate_std": 0.00872048432626184,
+        "fp_rate_mean": 0.0036632304686783183,
+        "fp_rate_std": 0.002334337328168305
+      },
+      "1.0": {
+        "tp_rate_mean": 0.059684684684684686,
+        "tp_rate_std": 0.00920397150527142,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "1.75e-05": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.006756756756756757,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.06344555102160966,
+        "tp_rate_std": 0.02029673733441612,
+        "fp_rate_mean": 0.006776042164226161,
+        "fp_rate_std": 0.0006110732333794165
+      },
+      "0.25": {
+        "tp_rate_mean": 0.06492321649353841,
+        "tp_rate_std": 0.01374688690496348,
+        "fp_rate_mean": 0.006907032214619753,
+        "fp_rate_std": 0.001609313270910384
+      },
+      "0.5": {
+        "tp_rate_mean": 0.05525298697302318,
+        "tp_rate_std": 0.00646396476433475,
+        "fp_rate_mean": 0.005890668317182646,
+        "fp_rate_std": 0.0030406867125666137
+      },
+      "1.0": {
+        "tp_rate_mean": 0.06801801801801802,
+        "tp_rate_std": 0.009858589472179862,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "2e-05": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.007882882882882882,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.06767835525441389,
+        "tp_rate_std": 0.024413045230709692,
+        "fp_rate_mean": 0.00803105799137353,
+        "fp_rate_std": 0.0006124755529257848
+      },
+      "0.25": {
+        "tp_rate_mean": 0.07689608877375746,
+        "tp_rate_std": 0.01491948755857514,
+        "fp_rate_mean": 0.008102178470137026,
+        "fp_rate_std": 0.0016183626023659398
+      },
+      "0.5": {
+        "tp_rate_mean": 0.06416072625815014,
+        "tp_rate_std": 0.007912115948493111,
+        "fp_rate_mean": 0.007273832767989803,
+        "fp_rate_std": 0.003623222250090769
+      },
+      "1.0": {
+        "tp_rate_mean": 0.0786036036036036,
+        "tp_rate_std": 0.008164220252428762,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "2.25e-05": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.009009009009009009,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.07668082367317387,
+        "tp_rate_std": 0.016600799829256323,
+        "fp_rate_mean": 0.009286073818520894,
+        "fp_rate_std": 0.0006145066246083223
+      },
+      "0.25": {
+        "tp_rate_mean": 0.08705727552108104,
+        "tp_rate_std": 0.02256460548326196,
+        "fp_rate_mean": 0.008701470093970428,
+        "fp_rate_std": 0.0015576005956429552
+      },
+      "0.5": {
+        "tp_rate_mean": 0.07540967710713506,
+        "tp_rate_std": 0.007253752058939806,
+        "fp_rate_mean": 0.008612235438806567,
+        "fp_rate_std": 0.003861702614547216
+      },
+      "1.0": {
+        "tp_rate_mean": 0.0882882882882883,
+        "tp_rate_std": 0.0071789988515807346,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "2.5e-05": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.01126126126126126,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.0931166315026066,
+        "tp_rate_std": 0.020308574202509252,
+        "fp_rate_mean": 0.011547349253910155,
+        "fp_rate_std": 0.000559637014632541
+      },
+      "0.25": {
+        "tp_rate_mean": 0.09523279787455763,
+        "tp_rate_std": 0.019524603750692003,
+        "fp_rate_mean": 0.01109127790891129,
+        "fp_rate_std": 0.0012958241987259193
+      },
+      "0.5": {
+        "tp_rate_mean": 0.08201437656821048,
+        "tp_rate_std": 0.006049661088671751,
+        "fp_rate_mean": 0.010882335291807464,
+        "fp_rate_std": 0.003861243930636648
+      },
+      "1.0": {
+        "tp_rate_mean": 0.09842342342342343,
+        "tp_rate_std": 0.007756385296271426,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "3e-05": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.02027027027027027,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.11348362233852058,
+        "tp_rate_std": 0.010703207392079115,
+        "fp_rate_mean": 0.02060023724560997,
+        "fp_rate_std": 0.0019113916786672894
+      },
+      "0.25": {
+        "tp_rate_mean": 0.11066819518716409,
+        "tp_rate_std": 0.020864178182985995,
+        "fp_rate_mean": 0.020386303435146826,
+        "fp_rate_std": 0.002247548247092433
+      },
+      "0.5": {
+        "tp_rate_mean": 0.10133755575246597,
+        "tp_rate_std": 0.005959910227819426,
+        "fp_rate_mean": 0.021252442399949195,
+        "fp_rate_std": 0.005570288786314446
+      },
+      "1.0": {
+        "tp_rate_mean": 0.115990990990991,
+        "tp_rate_std": 0.008809732980003582,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "3.5e-05": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.028153153153153154,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.11966918934882986,
+        "tp_rate_std": 0.011792249388464654,
+        "fp_rate_mean": 0.02763268966624639,
+        "fp_rate_std": 0.0025158924631239663
+      },
+      "0.25": {
+        "tp_rate_mean": 0.13146878058979916,
+        "tp_rate_std": 0.02145833559361259,
+        "fp_rate_mean": 0.028750367608928806,
+        "fp_rate_std": 0.0018270298405851518
+      },
+      "0.5": {
+        "tp_rate_mean": 0.11822298456361643,
+        "tp_rate_std": 0.005646426243827043,
+        "fp_rate_mean": 0.030764376750835275,
+        "fp_rate_std": 0.004968718744969767
+      },
+      "1.0": {
+        "tp_rate_mean": 0.13536036036036034,
+        "tp_rate_std": 0.011042928533451594,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "4e-05": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.03490990990990991,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.13979275949097045,
+        "tp_rate_std": 0.02079389556439978,
+        "fp_rate_mean": 0.03415256684359888,
+        "fp_rate_std": 0.0021730084091569047
+      },
+      "0.25": {
+        "tp_rate_mean": 0.1494186450186426,
+        "tp_rate_std": 0.018870266979648553,
+        "fp_rate_mean": 0.03622287524956415,
+        "fp_rate_std": 0.00265165958265068
+      },
+      "0.5": {
+        "tp_rate_mean": 0.1365797908581989,
+        "tp_rate_std": 0.005929452907937987,
+        "fp_rate_mean": 0.03629283500307626,
+        "fp_rate_std": 0.004219520750416894
+      },
+      "1.0": {
+        "tp_rate_mean": 0.15518018018018015,
+        "tp_rate_std": 0.010763786617431098,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "4.5e-05": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.04617117117117117,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.15476303167773747,
+        "tp_rate_std": 0.025285236566653702,
+        "fp_rate_mean": 0.04594190123949458,
+        "fp_rate_std": 0.0016912138499293541
+      },
+      "0.25": {
+        "tp_rate_mean": 0.1639032290467621,
+        "tp_rate_std": 0.014656003964202398,
+        "fp_rate_mean": 0.047903786902497324,
+        "fp_rate_std": 0.002432273109292576
+      },
+      "0.5": {
+        "tp_rate_mean": 0.15708938038531092,
+        "tp_rate_std": 0.005024515379821096,
+        "fp_rate_mean": 0.04889431315441054,
+        "fp_rate_std": 0.0063743601664716446
+      },
+      "1.0": {
+        "tp_rate_mean": 0.1786036036036036,
+        "tp_rate_std": 0.010212418061941113,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "5e-05": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.05405405405405406,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.18058609004158593,
+        "tp_rate_std": 0.02548666652454715,
+        "fp_rate_mean": 0.05396963874462655,
+        "fp_rate_std": 0.0013189055993006202
+      },
+      "0.25": {
+        "tp_rate_mean": 0.1858680106460524,
+        "tp_rate_std": 0.017110861095720818,
+        "fp_rate_mean": 0.05478687888613397,
+        "fp_rate_std": 0.0029493670284571165
+      },
+      "0.5": {
+        "tp_rate_mean": 0.17208008181097956,
+        "tp_rate_std": 0.007590298355837746,
+        "fp_rate_mean": 0.056636309895597356,
+        "fp_rate_std": 0.00535446804634376
+      },
+      "1.0": {
+        "tp_rate_mean": 0.20090090090090093,
+        "tp_rate_std": 0.00817043114739507,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "0.0001": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.14864864864864866,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.35772407318248833,
+        "tp_rate_std": 0.04135776413729985,
+        "fp_rate_mean": 0.14907513311224144,
+        "fp_rate_std": 0.001835863601100908
+      },
+      "0.25": {
+        "tp_rate_mean": 0.3761801709356941,
+        "tp_rate_std": 0.02766783714545075,
+        "fp_rate_mean": 0.14515444058037819,
+        "fp_rate_std": 0.005271662358181487
+      },
+      "0.5": {
+        "tp_rate_mean": 0.34233586247494613,
+        "tp_rate_std": 0.014793367604604798,
+        "fp_rate_mean": 0.1576072321230852,
+        "fp_rate_std": 0.009330667995308035
+      },
+      "1.0": {
+        "tp_rate_mean": 0.3655405405405405,
+        "tp_rate_std": 0.011672665333198131,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "0.00015": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.22972972972972974,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.5078847996036749,
+        "tp_rate_std": 0.07765923098816815,
+        "fp_rate_mean": 0.23088347968239353,
+        "fp_rate_std": 0.0019330046505903775
+      },
+      "0.25": {
+        "tp_rate_mean": 0.5104460313504886,
+        "tp_rate_std": 0.02605720485345939,
+        "fp_rate_mean": 0.22511064945116765,
+        "fp_rate_std": 0.004124620117771874
+      },
+      "0.5": {
+        "tp_rate_mean": 0.4654469960669891,
+        "tp_rate_std": 0.015930852020675457,
+        "fp_rate_mean": 0.2388559430246954,
+        "fp_rate_std": 0.013053734675482875
+      },
+      "1.0": {
+        "tp_rate_mean": 0.4941441441441441,
+        "tp_rate_std": 0.010763786617431088,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "0.0002": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.2939189189189189,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.6035553163437125,
+        "tp_rate_std": 0.0681957923783699,
+        "fp_rate_mean": 0.2951337244738886,
+        "fp_rate_std": 0.003234447769159659
+      },
+      "0.25": {
+        "tp_rate_mean": 0.6086843095152767,
+        "tp_rate_std": 0.020316176459024903,
+        "fp_rate_mean": 0.2933349243550666,
+        "fp_rate_std": 0.006297916165291305
+      },
+      "0.5": {
+        "tp_rate_mean": 0.559515179336057,
+        "tp_rate_std": 0.012683237178202062,
+        "fp_rate_mean": 0.29568616332563397,
+        "fp_rate_std": 0.009560137270852224
+      },
+      "1.0": {
+        "tp_rate_mean": 0.5916666666666666,
+        "tp_rate_std": 0.009025885094375642,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "0.00025": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.35585585585585583,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.6604257158068687,
+        "tp_rate_std": 0.06539681548392504,
+        "fp_rate_mean": 0.3581026388526049,
+        "fp_rate_std": 0.002678899043611367
+      },
+      "0.25": {
+        "tp_rate_mean": 0.6702749710250155,
+        "tp_rate_std": 0.008889993901869833,
+        "fp_rate_mean": 0.3541166044998037,
+        "fp_rate_std": 0.006504236423918736
+      },
+      "0.5": {
+        "tp_rate_mean": 0.6339358663141108,
+        "tp_rate_std": 0.015808766520572348,
+        "fp_rate_mean": 0.35506196732954975,
+        "fp_rate_std": 0.013629072118628243
+      },
+      "1.0": {
+        "tp_rate_mean": 0.668018018018018,
+        "tp_rate_std": 0.008676288416332526,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "0.0003": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.40878378378378377,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.7038856785737637,
+        "tp_rate_std": 0.060397508362359416,
+        "fp_rate_mean": 0.41281803866733646,
+        "fp_rate_std": 0.0028077620927614236
+      },
+      "0.25": {
+        "tp_rate_mean": 0.7174434032614527,
+        "tp_rate_std": 0.015104324117628859,
+        "fp_rate_mean": 0.4080147878014387,
+        "fp_rate_std": 0.008177038867945064
+      },
+      "0.5": {
+        "tp_rate_mean": 0.6956679716148939,
+        "tp_rate_std": 0.01692636967545255,
+        "fp_rate_mean": 0.40520429010142295,
+        "fp_rate_std": 0.019419107990785448
+      },
+      "1.0": {
+        "tp_rate_mean": 0.7254504504504504,
+        "tp_rate_std": 0.011270266669546693,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "0.00035": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.4572072072072072,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.7457561085651385,
+        "tp_rate_std": 0.054982438565047434,
+        "fp_rate_mean": 0.46125005057024,
+        "fp_rate_std": 0.0032399807248763525
+      },
+      "0.25": {
+        "tp_rate_mean": 0.7534590906978849,
+        "tp_rate_std": 0.008382161833019156,
+        "fp_rate_mean": 0.45383884248903766,
+        "fp_rate_std": 0.005476344851994248
+      },
+      "0.5": {
+        "tp_rate_mean": 0.7394808835344555,
+        "tp_rate_std": 0.02252137507852546,
+        "fp_rate_mean": 0.44649552261882774,
+        "fp_rate_std": 0.019421256878124404
+      },
+      "1.0": {
+        "tp_rate_mean": 0.770045045045045,
+        "tp_rate_std": 0.007651030518677048,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "0.0004": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.5,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.7802050351990361,
+        "tp_rate_std": 0.0499867311656296,
+        "fp_rate_mean": 0.5044152882314312,
+        "fp_rate_std": 0.0019417485891217048
+      },
+      "0.25": {
+        "tp_rate_mean": 0.7821717033067804,
+        "tp_rate_std": 0.015467140829318125,
+        "fp_rate_mean": 0.4966102085280267,
+        "fp_rate_std": 0.008497878079815302
+      },
+      "0.5": {
+        "tp_rate_mean": 0.7714431158630457,
+        "tp_rate_std": 0.019528969859893813,
+        "fp_rate_mean": 0.4888040426837093,
+        "fp_rate_std": 0.020591073853167538
+      },
+      "1.0": {
+        "tp_rate_mean": 0.8024774774774774,
+        "tp_rate_std": 0.012265989913684787,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "0.00045": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.5236486486486487,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.8042375104306434,
+        "tp_rate_std": 0.04611849459974931,
+        "fp_rate_mean": 0.5272319729306478,
+        "fp_rate_std": 0.0010569944907912283
+      },
+      "0.25": {
+        "tp_rate_mean": 0.8084654619018437,
+        "tp_rate_std": 0.02089334157339189,
+        "fp_rate_mean": 0.5196814900804967,
+        "fp_rate_std": 0.009185224736245596
+      },
+      "0.5": {
+        "tp_rate_mean": 0.7987975975508189,
+        "tp_rate_std": 0.021193576908028474,
+        "fp_rate_mean": 0.5123780772563535,
+        "fp_rate_std": 0.02170754927825706
+      },
+      "1.0": {
+        "tp_rate_mean": 0.8211711711711711,
+        "tp_rate_std": 0.013799525839676023,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "0.0005": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.5518018018018018,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.8232368083624836,
+        "tp_rate_std": 0.03496782539270956,
+        "fp_rate_mean": 0.5545830979718496,
+        "fp_rate_std": 0.002197560953157097
+      },
+      "0.25": {
+        "tp_rate_mean": 0.8309930134584214,
+        "tp_rate_std": 0.025008517713758914,
+        "fp_rate_mean": 0.5469244748848417,
+        "fp_rate_std": 0.008575035213344217
+      },
+      "0.5": {
+        "tp_rate_mean": 0.81926017680162,
+        "tp_rate_std": 0.021369395462383752,
+        "fp_rate_mean": 0.5395279185131889,
+        "fp_rate_std": 0.022936965595069945
+      },
+      "1.0": {
+        "tp_rate_mean": 0.8364864864864865,
+        "tp_rate_std": 0.0120742568952074,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "0.0006": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.5788288288288288,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.8581061283801764,
+        "tp_rate_std": 0.025710515617690433,
+        "fp_rate_mean": 0.5814203723876707,
+        "fp_rate_std": 0.0023350872443424655
+      },
+      "0.25": {
+        "tp_rate_mean": 0.8543919070739685,
+        "tp_rate_std": 0.028762428223282094,
+        "fp_rate_mean": 0.575948903363669,
+        "fp_rate_std": 0.009959295007495317
+      },
+      "0.5": {
+        "tp_rate_mean": 0.84114275639368,
+        "tp_rate_std": 0.0212597737364513,
+        "fp_rate_mean": 0.5695045832303822,
+        "fp_rate_std": 0.020517726002702952
+      },
+      "1.0": {
+        "tp_rate_mean": 0.8617117117117118,
+        "tp_rate_std": 0.01248731196002621,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "0.0008": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.6204954954954955,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.8828709856858238,
+        "tp_rate_std": 0.014614065745990603,
+        "fp_rate_mean": 0.6233252454972286,
+        "fp_rate_std": 0.002227406079924961
+      },
+      "0.25": {
+        "tp_rate_mean": 0.8792667513923436,
+        "tp_rate_std": 0.021999443974945146,
+        "fp_rate_mean": 0.6193921314055444,
+        "fp_rate_std": 0.008629191653623365
+      },
+      "0.5": {
+        "tp_rate_mean": 0.868451898797856,
+        "tp_rate_std": 0.016498203064931112,
+        "fp_rate_mean": 0.609371125142156,
+        "fp_rate_std": 0.020264811763240274
+      },
+      "1.0": {
+        "tp_rate_mean": 0.886936936936937,
+        "tp_rate_std": 0.008415108870391623,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    },
+    "0.001": {
+      "0.0": {
+        "tp_rate_mean": null,
+        "tp_rate_std": null,
+        "fp_rate_mean": 0.6418918918918919,
+        "fp_rate_std": 0.0
+      },
+      "0.1": {
+        "tp_rate_mean": 0.9038612657031798,
+        "tp_rate_std": 0.00748727504339015,
+        "fp_rate_mean": 0.64564330446785,
+        "fp_rate_std": 0.002793085641240594
+      },
+      "0.25": {
+        "tp_rate_mean": 0.8930594475605733,
+        "tp_rate_std": 0.020366268227040962,
+        "fp_rate_mean": 0.640047749741673,
+        "fp_rate_std": 0.008228560881507857
+      },
+      "0.5": {
+        "tp_rate_mean": 0.8804952687812373,
+        "tp_rate_std": 0.01277892907493217,
+        "fp_rate_mean": 0.6325929158147288,
+        "fp_rate_std": 0.01764772482387524
+      },
+      "1.0": {
+        "tp_rate_mean": 0.899099099099099,
+        "tp_rate_std": 0.007690707693226993,
+        "fp_rate_mean": null,
+        "fp_rate_std": null
+      }
+    }
+  },
+  "operating_points": {
+    "0.05": {
+      "theta_v": "4.5e-05",
+      "fp_rate": 0.04617117117117117,
+      "tp_rate": 0.1786036036036036,
+      "target_achieved": true
+    },
+    "0.1": {
+      "theta_v": "5e-05",
+      "fp_rate": 0.05405405405405406,
+      "tp_rate": 0.20090090090090093,
+      "target_achieved": true
+    }
+  },
+  "n_samples": 888,
+  "eta": 0.05,
+  "n_trials": 5,
+  "misc_rates": [
+    0.0,
+    0.1,
+    0.25,
+    0.5,
+    1.0
+  ]
+}

@@ -1,6 +1,5 @@
 # Data and checkpoints (not redistributed; see README)
 /data/
-data/
 checkpoints/
 *.pt
 *.pth

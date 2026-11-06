@@ -16,7 +16,7 @@ gnn:
   hidden_dim: 64
   num_heads: 4
   dropout: 0.1
-  graph_threshold: 0.1      # τ — matches the paper (Appendix B); used for all experiments
+  graph_threshold: 0.05     # τ — NIH uses 0.05 (denser 14-concept graph, 105 edges); TBX11K uses 0.10
 
 vlm:
   model_name: "microsoft/BiomedVLP-BioViL-T"

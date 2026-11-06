@@ -13,3 +13,8 @@ pyyaml>=6.0                   # config parsing
 pillow>=9.5                   # image loading
 tqdm>=4.65                    # progress bars
 matplotlib>=3.7               # figure generation (scripts/)
+scipy>=1.10                   # paired t-tests in scripts/
+datasets>=2.14                # NIH ChestX-ray14 download (scripts/download_nih*.py)
+opencv-python>=4.8            # similarity-map figures (scripts/plot_simmaps_comparison.py)
+# Optional, only for the in-domain backbone ablation (Table 31):
+# torchxrayvision

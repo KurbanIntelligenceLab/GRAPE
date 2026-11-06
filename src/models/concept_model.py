@@ -36,8 +36,22 @@ class ConceptModel(nn.Module):
             base = models.resnet34(weights="IMAGENET1K_V1" if pretrained else None)
             self.feature_extractor = nn.Sequential(*list(base.children())[:-2])
             self.feature_dim = 512
+        elif backbone == "xrv_densenet121":
+            # In-domain chest X-ray foundation backbone (TorchXRayVision
+            # DenseNet121, pretrained on a pool of public CXR datasets),
+            # for the in-domain backbone ablation (Table 31).
+            # Expects single-channel input normalized to roughly [-1024,
+            # 1024]; our pipeline feeds 3-channel ImageNet-normalized RGB,
+            # so we convert inside forward() rather than touch the shared
+            # data loader.
+            import torchxrayvision as xrv
+            base = xrv.models.DenseNet(weights="densenet121-res224-all")
+            self.feature_extractor = base.features
+            self.feature_dim = 1024
+            self._xrv_backbone = True
         else:
             raise ValueError(f"Unsupported backbone: {backbone}")
+        self._xrv_backbone = getattr(self, "_xrv_backbone", False)
 
         # --- Per-concept 1x1 conv CAM head ---
         # Produces K activation maps, one per concept
@@ -56,6 +70,15 @@ class ConceptModel(nn.Module):
             cam:    normalized activation maps per concept (B, K, H, W)
             logits: per-concept logits for BCE loss (B, K)
         """
+        if self._xrv_backbone:
+            # Input arrives as 3-channel ImageNet-normalized RGB; TorchXRayVision
+            # expects single-channel images scaled to roughly [-1024, 1024].
+            # Undo ImageNet normalization -> [0,1] grayscale -> XRV's range.
+            mean = x.new_tensor([0.485, 0.456, 0.406]).view(1, 3, 1, 1)
+            std = x.new_tensor([0.229, 0.224, 0.225]).view(1, 3, 1, 1)
+            x_01 = (x * std + mean).clamp(0, 1).mean(dim=1, keepdim=True)  # (B,1,H,W)
+            x = x_01 * 2048 - 1024
+
         # Feature extraction
         f = self.feature_extractor(x)                        # (B, C, H, W)
 

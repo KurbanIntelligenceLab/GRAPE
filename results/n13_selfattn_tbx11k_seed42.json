@@ -1,0 +1,16 @@
+{
+  "dataset": "tbx11k",
+  "seed": 42,
+  "num_concepts": 3,
+  "num_classes": 3,
+  "SelfAttention (matched)": {
+    "f1": 0.9064390837256147,
+    "pg": 0.08536585365853659,
+    "params": 48003
+  },
+  "GAT (GRAPE, reference)": {
+    "f1": 0.9001214730602772,
+    "pg": 0.09146341463414634,
+    "params": 43587
+  }
+}

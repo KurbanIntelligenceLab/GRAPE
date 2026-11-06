@@ -114,7 +114,7 @@ class PrototypeLearner(nn.Module):
         """
         B, K, D = v_prime.shape
         protos = self.normalized_prototypes                   # (K, M, D)
-        total_loss = 0.0
+        total_loss = torch.zeros(1, device=v_prime.device, dtype=v_prime.dtype).squeeze()
         count = 0
 
         for k in range(K):
@@ -139,7 +139,7 @@ class PrototypeLearner(nn.Module):
             # (vectors for absent concepts are less meaningful)
             mask = concept_labels[:, k].bool()
             if mask.sum() > 0:
-                total_loss += loss_k[mask].mean()
+                total_loss = total_loss + loss_k[mask].mean()  # use + not += to preserve grad_fn
                 count += 1
 
         return total_loss / max(count, 1)

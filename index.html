@@ -260,19 +260,19 @@
       <p style="font-size: 20px; color: black; text-align: center;">
         Prototype-based medical image classifiers treat clinical findings as independent, silently
         amplify unsafe physician feedback, and require full retraining to add a new finding.
-        <b>GRAPE</b> resolves all three limitations in one architecture: a
-        <b>graph attention task head</b> that models anatomical concept co-occurrence, a
-        <b>concept-mismatch safety check</b> that catches erroneous clinician corrections before
-        they are applied, and <b>open-vocabulary prototype anchoring</b> that adds a new finding
+        <b>GRAPE</b> targets all three limitations in one architecture: a
+        <b>nonlinear task head</b> implemented with graph-attention layers, a
+        <b>concept-mismatch safety check</b> that flags erroneous clinician corrections before
+        they are applied, and <b>open-vocabulary prototype anchoring</b> for adding a new finding
         from a single labeled image, with only <b>+1ms</b> added latency at interactive batch size.
       </p>
 
       <img class="teaser-figure" src="site_assets/pg_dots.png" alt="Pointing Game localization comparison across methods" style="margin-top: 2rem; border-radius: 10px; border: 1px solid #e8e8e8;">
       <p class="note-text has-text-centered" style="margin-top: 0.75rem;">
         Pointing Game on TBX11K chest X-rays (Active TB concept). Each marker shows the
-        max-activation point of a method; <b>GRAPE</b> (orange circle) consistently localizes the
-        lesion inside the ground-truth bounding box (cyan) where CSR, CBM, and PIP-Net scatter to
-        irrelevant regions.
+        max-activation point of a method. These images were selected because <b>GRAPE</b>'s point
+        (orange circle) falls inside the ground-truth bounding box (cyan); overall Pointing Game
+        values remain low.
       </p>
     </div>
   </div>
@@ -291,21 +291,25 @@
       <div class="contrib-card">
         <h4>Module A — Graph Attention Task Head</h4>
         <p>Builds a data-driven concept co-occurrence graph from training labels and refines
-        prototype similarity scores via graph attention before classification, boosting macro-F1
-        by <b>+13.8&nbsp;pp</b> over the prototype baseline on TBX11K.</p>
+        prototype similarity scores with a two-layer GAT-style head, boosting macro-F1
+        by <b>+13.8&nbsp;pp</b> over the prototype baseline on TBX11K but not on NIH ChestX-ray14.
+        In the evaluated implementation, the graph does not affect the head's outputs at inference,
+        so it does not contribute to this gain.</p>
       </div>
       <div class="contrib-card">
         <h4>Module B — Concept-Mismatch Safety Check</h4>
-        <p>The first such mechanism in prototype-based medical classifiers: warns when the
+        <p>To our knowledge the first such mechanism in prototype-based medical classifiers: warns when the
         model's dominant finding inside a doctor-drawn region conflicts with the claimed label,
-        catching <b>85%</b> of erroneous annotations versus 51% for MC-Dropout, at no extra
-        inference cost.</p>
+        catching <b>85%</b> of simulated erroneous annotations at no extra inference cost at a favorable
+        operating point, though sensitivity falls substantially at clinically realistic
+        false-positive budgets.</p>
       </div>
       <div class="contrib-card">
         <h4>Module C — Open-Vocabulary Prototype Anchoring</h4>
         <p>Aligns visual prototypes to frozen BioViL-T text embeddings, letting a new clinical
         finding be added from a single labeled image without modifying any other component of the
-        model.</p>
+        model. Evaluated for localization only; with one example, Pointing Game stays near or below
+        chance.</p>
       </div>
     </div>
   </div>
@@ -327,7 +331,7 @@
         <div class="stat-label">Macro F1 vs. CSR (TBX11K)</div>
       </div>
       <div class="stat-box">
-        <div class="stat-num">2.6×</div>
+        <div class="stat-num">2.1×</div>
         <div class="stat-label">Better Lesion Localization</div>
       </div>
       <div class="stat-box">
@@ -380,7 +384,7 @@
             <td><b>GRAPE</b> (full)</td>
             <td>0.6031 ± 0.0174</td>
             <td>—</td>
-            <td>−0.3 pp</td>
+            <td>−0.2 pp</td>
             <td>0.894 (n.s.)</td>
           </tr>
         </tbody>
@@ -388,7 +392,8 @@
       <p class="note-text">
         Multi-seed comparison (5 seeds {0,1,2,3,42}) under the same interpretability-constrained
         training regime (frozen backbone, concept supervision, staged curriculum). On TBX11K, the
-        graph attention head yields a large and significant gain; on the 14-concept NIH task, GRAPE
+        task head yields a large and significant gain, to which the co-occurrence graph does not
+        contribute; on the 14-concept NIH task, GRAPE
         and CSR are statistically comparable under the rigorous patient-level split protocol.
       </p>
     </div>
@@ -396,7 +401,7 @@
     <div class="figure-grid" style="grid-template-columns: 1fr;">
       <div class="figure-cell">
         <img src="site_assets/simmaps_comparison.png" alt="Similarity map comparison" loading="lazy">
-        <div class="figure-caption">Prototype similarity maps across CSR, CBM, PIP-Net, and GRAPE on representative Active TB examples. Percentage badges report the fraction of total heatmap energy inside the ground-truth box.</div>
+        <div class="figure-caption">Prototype similarity maps across CSR, CBM, PIP-Net, and GRAPE on selected Active TB examples. Percentage badges report the fraction of total heatmap energy inside the ground-truth box.</div>
       </div>
     </div>
   </div>

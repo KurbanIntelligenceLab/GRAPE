@@ -65,27 +65,36 @@ class GATLayer(nn.Module):
         x: torch.Tensor,
         edge_index: torch.Tensor,
         edge_weight: torch.Tensor = None,
-    ) -> torch.Tensor:
+        return_attention: bool = False,
+    ):
         """
         Args:
-            x:           node features (K, in_features)  or  (B, K, in_features)
-            edge_index:  (2, E) edge indices
-            edge_weight: (E,) optional edge weights
+            x:                node features (K, in_features) or (B, K, in_features)
+            edge_index:       (2, E) edge indices
+            edge_weight:      (E,) optional edge weights
+            return_attention: if True, also return attention weights (E, heads)
 
         Returns:
-            updated node features (K, num_heads*out_features) or concat/mean of heads
+            If return_attention=False: updated node features tensor
+            If return_attention=True:  (node_features, alpha) where alpha is (E, heads)
         """
         batched = x.dim() == 3
         if batched:
             B, K, _ = x.shape
-            # Process each sample — stack along batch
-            out = torch.stack([
-                self._forward_single(x[b], edge_index, edge_weight) for b in range(B)
-            ])
-            return out
-        return self._forward_single(x, edge_index, edge_weight)
+            results = [
+                self._forward_single(x[b], edge_index, edge_weight,
+                                     return_attention=return_attention)
+                for b in range(B)
+            ]
+            if return_attention:
+                feats  = torch.stack([r[0] for r in results])
+                alphas = torch.stack([r[1] for r in results])
+                return feats, alphas
+            return torch.stack(results)
+        return self._forward_single(x, edge_index, edge_weight,
+                                    return_attention=return_attention)
 
-    def _forward_single(self, x, edge_index, edge_weight):
+    def _forward_single(self, x, edge_index, edge_weight, return_attention=False):
         K = x.shape[0]
         src, dst = edge_index[0], edge_index[1]
 
@@ -113,9 +122,13 @@ class GATLayer(nn.Module):
                          alpha.unsqueeze(-1) * Wh_dst)       # (K, heads, D)
 
         if self.concat:
-            return F.elu(out.view(K, self.num_heads * self.head_dim))
+            feat = F.elu(out.view(K, self.num_heads * self.head_dim))
         else:
-            return F.elu(out.mean(dim=1))                    # (K, D)
+            feat = F.elu(out.mean(dim=1))                    # (K, D)
+
+        if return_attention:
+            return feat, alpha.detach()
+        return feat
 
     @staticmethod
     def _sparse_softmax(e: torch.Tensor, dst: torch.Tensor, num_nodes: int) -> torch.Tensor:
@@ -200,28 +213,30 @@ class GNNTaskHead(nn.Module):
         self.edge_index = edge_index
         self.edge_weight = edge_weight
 
-    def forward(self, s: torch.Tensor) -> torch.Tensor:
+    def forward(self, s: torch.Tensor, return_attention: bool = False):
         """
         Args:
-            s: similarity scores (B, K, M)
-               s[b, k, m] = similarity score for image b, concept k, prototype m
+            s:                similarity scores (B, K, M)
+            return_attention: if True, return (logits, attn1, attn2) where
+                              attn1/attn2 are (B, E, heads) from layers 1 and 2
 
         Returns:
-            logits: class predictions (B, num_classes)
+            logits (B, num_classes), or (logits, attn1, attn2) if return_attention
         """
         assert self.edge_index is not None, "Call set_graph() before forward()"
 
         B, K, M = s.shape
-
-        # Node features: (B, K, M) — each concept node has M prototype similarity scores
         x = s                                                # (B, K, M)
 
-        # GAT Layer 1
-        x = self.gat1(x, self.edge_index, self.edge_weight) # (B, K, heads*hidden)
-
-        # GAT Layer 2
-        x = self.gat2(x, self.edge_index, self.edge_weight) # (B, K, hidden)
-
-        # Flatten and classify
-        x = x.view(B, K * x.shape[-1])                      # (B, K*hidden)
-        return self.readout(x)                               # (B, num_classes)
+        if return_attention:
+            x, attn1 = self.gat1(x, self.edge_index, self.edge_weight,
+                                  return_attention=True)     # (B, K, heads*hidden)
+            x, attn2 = self.gat2(x, self.edge_index, self.edge_weight,
+                                  return_attention=True)     # (B, K, hidden)
+            x = x.view(B, K * x.shape[-1])
+            return self.readout(x), attn1, attn2
+        else:
+            x = self.gat1(x, self.edge_index, self.edge_weight)
+            x = self.gat2(x, self.edge_index, self.edge_weight)
+            x = x.view(B, K * x.shape[-1])
+            return self.readout(x)

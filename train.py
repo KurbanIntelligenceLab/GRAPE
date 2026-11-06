@@ -46,11 +46,16 @@ def parse_args():
     parser.add_argument("--backbone", type=str, default="resnet50")
     parser.add_argument("--num_prototypes", type=int, default=100)
     parser.add_argument("--proto_dim", type=int, default=256)
+    parser.add_argument("--task_head_type", type=str, default="gat",
+                        choices=["gat", "mlgcn", "addgcn"],
+                        help="Graph task head variant for ablation H3")
 
     # Improvement toggles (ablation)
     parser.add_argument("--no_gnn", action="store_true", help="Disable [A] GNN task head")
     parser.add_argument("--no_uncertainty", action="store_true", help="Disable [B] uncertainty head")
     parser.add_argument("--no_vlm", action="store_true", help="Disable [C] VLM alignment")
+    parser.add_argument("--end_to_end", action="store_true",
+                        help="N4 ablation: train all params jointly (no staged curriculum)")
 
     # Training
     parser.add_argument("--epochs", type=int, default=None,
@@ -103,6 +108,7 @@ def build_model(args, config: dict, num_concepts: int, num_classes: int) -> CSRM
         use_gnn=not args.no_gnn,
         use_uncertainty=not args.no_uncertainty,
         use_vlm=not args.no_vlm,
+        task_head_type=args.task_head_type,
         gnn_hidden_dim=config.get("gnn", {}).get("hidden_dim", 64),
         gnn_num_heads=config.get("gnn", {}).get("num_heads", 4),
         vlm_text_dim=config.get("vlm", {}).get("text_dim", 768),
@@ -179,20 +185,24 @@ def main():
     if args.resume_from:
         trainer.load_checkpoint(args.resume_from)
 
-    stages = [int(s) for s in args.stages.split(",")]
-    print(f"\nRunning stages: {stages}\n")
+    if args.end_to_end:
+        print("\nRunning: end-to-end (no staged curriculum)\n")
+        trainer.run_end_to_end(train_loader, val_loader)
+    else:
+        stages = [int(s) for s in args.stages.split(",")]
+        print(f"\nRunning stages: {stages}\n")
 
-    if 1 in stages:
-        trainer.run_stage1(train_loader, val_loader)
+        if 1 in stages:
+            trainer.run_stage1(train_loader, val_loader)
 
-    if 2 in stages:
-        trainer.run_stage2(train_loader)
+        if 2 in stages:
+            trainer.run_stage2(train_loader)
 
-    if 3 in stages:
-        trainer.run_stage3(train_loader)
+        if 3 in stages:
+            trainer.run_stage3(train_loader)
 
-    if 4 in stages:
-        trainer.run_stage4(train_loader, val_loader, build_graph_from=train_loader)
+        if 4 in stages:
+            trainer.run_stage4(train_loader, val_loader, build_graph_from=train_loader)
 
     # ── Final evaluation ──────────────────────────────────────────────────────
     results = trainer.evaluate(test_loader)
